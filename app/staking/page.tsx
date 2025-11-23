@@ -217,7 +217,8 @@ export default function Staking() {
     !isNaN(parseFloat(amount));
 
   const isStakingAtium = isStaking && selectedToken?.symbol === "ATIUM";
-  const isStakingUsdc = isStaking && selectedToken?.symbol === usdcToken?.symbol;
+  const isStakingUsdc =
+    isStaking && selectedToken?.symbol === usdcToken?.symbol;
 
   // Get USDC-equivalent token price for conversion
   const { data: usdcPrice } = useReadContract({
@@ -227,12 +228,13 @@ export default function Staking() {
     args: usdcToken ? [usdcToken.address as `0x${string}`] : undefined,
     chainId: chainId,
     query: {
-      enabled:
-        !!liquidStabilityPoolAddress &&
-        !!usdcToken &&
-        isStakingUsdc &&
-        !!amount &&
-        parseFloat(amount) > 0,
+      enabled: Boolean(
+        liquidStabilityPoolAddress &&
+          usdcToken &&
+          isStakingUsdc &&
+          amount &&
+          parseFloat(amount) > 0
+      ),
     },
   });
 
@@ -244,7 +246,8 @@ export default function Staking() {
       const tokenAmount = parseUnits(amount, usdcToken.decimals); // Token decimals (USDC=6, USDRIF=18)
       const price = usdcPrice as bigint; // Price is in 18 decimals WAD format
       // Convert: (tokenAmount * price) / 10^tokenDecimals
-      const atiumValue = (tokenAmount * price) / BigInt(10 ** usdcToken.decimals);
+      const atiumValue =
+        (tokenAmount * price) / BigInt(10 ** usdcToken.decimals);
       return atiumValue;
     } catch (error) {
       console.error("Error converting token to ATIUM value:", error);
@@ -282,7 +285,13 @@ export default function Staking() {
       console.error("Error parsing amount for preview:", error);
       return undefined;
     }
-  }, [shouldPreviewDeposit, isStakingAtium, isStakingUsdc, amount, usdcAmountInAtium]);
+  }, [
+    shouldPreviewDeposit,
+    isStakingAtium,
+    isStakingUsdc,
+    amount,
+    usdcAmountInAtium,
+  ]);
 
   const {
     data: previewShares,
@@ -598,7 +607,8 @@ export default function Staking() {
             Staking
           </div>
           <div className="p-4 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg text-yellow-800 dark:text-yellow-200">
-            {usdcToken?.symbol || "USDC"} or ATIUM is not available on this chain.
+            {usdcToken?.symbol || "USDC"} or ATIUM is not available on this
+            chain.
           </div>
         </div>
       </div>
@@ -806,7 +816,8 @@ export default function Staking() {
                   selectedToken?.symbol === usdcToken?.symbol) ? (
                   !shouldPreviewDeposit ? (
                     <div className="text-sm text-zinc-600 dark:text-zinc-400">
-                      {isLoadingUsdcPrice && selectedToken?.symbol === usdcToken?.symbol
+                      {isLoadingUsdcPrice &&
+                      selectedToken?.symbol === usdcToken?.symbol
                         ? "Loading price..."
                         : "Preview unavailable. Pool may be empty or initializing. Shares will be calculated on deposit."}
                     </div>
@@ -823,12 +834,13 @@ export default function Staking() {
                     <div className="text-sm text-zinc-600 dark:text-zinc-400">
                       You will receive:{" "}
                       {formatUnits(previewShares as bigint, 18)} shares
-                      {selectedToken?.symbol === usdcToken?.symbol && usdcAmountInAtium && (
-                        <span className="block text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-                          ({amount} {usdcToken?.symbol} ≈{" "}
-                          {formatUnits(usdcAmountInAtium, 18)} ATIUM)
-                        </span>
-                      )}
+                      {selectedToken?.symbol === usdcToken?.symbol &&
+                        usdcAmountInAtium && (
+                          <span className="block text-xs text-zinc-500 dark:text-zinc-400 mt-1">
+                            ({amount} {usdcToken?.symbol} ≈{" "}
+                            {formatUnits(usdcAmountInAtium, 18)} ATIUM)
+                          </span>
+                        )}
                     </div>
                   ) : (
                     <div className="text-sm text-zinc-500 dark:text-zinc-500">
