@@ -611,7 +611,7 @@ export default function Deposit() {
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black p-4">
       <div className="w-full max-w-md">
         <h1 className="text-3xl font-semibold text-black dark:text-zinc-50 mb-8 text-center">
-          Deposit
+        Deposit
         </h1>
 
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6 shadow-sm">
