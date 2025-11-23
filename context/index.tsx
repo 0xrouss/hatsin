@@ -4,12 +4,10 @@ import { wagmiAdapter, projectId } from "@/config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
 import {
-  flare,
-  flareTestnet,
   rootstock,
   rootstockTestnet,
   zircuit,
-  zircuitTestnet,
+  zircuitGarfieldTestnet,
 } from "@reown/appkit/networks";
 import React, { type ReactNode } from "react";
 import { cookieToInitialState, WagmiProvider, type Config } from "wagmi";
@@ -36,12 +34,10 @@ const modal = createAppKit({
   projectId,
   networks: [
     zircuit,
-    zircuitTestnet,
+    zircuitGarfieldTestnet,
     hatsinChainlet,
     rootstock,
     rootstockTestnet,
-    flare,
-    flareTestnet,
   ],
   defaultNetwork: zircuit,
   metadata: metadata,

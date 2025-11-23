@@ -1,0 +1,497 @@
+import { Abi } from "viem";
+
+export const BorrowerOpsAbi: Abi = [
+  {
+    type: "constructor",
+    inputs: [
+      { name: "_hatsinCore", type: "address", internalType: "address" },
+      { name: "_debtTokenAddress", type: "address", internalType: "address" },
+      { name: "_factory", type: "address", internalType: "address" },
+      { name: "_minNetDebt", type: "uint256", internalType: "uint256" },
+      { name: "_gasCompensation", type: "uint256", internalType: "uint256" },
+    ],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "DEBT_GAS_COMPENSATION",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "DECIMAL_PRECISION",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "HATSIN_CORE",
+    inputs: [],
+    outputs: [
+      { name: "", type: "address", internalType: "contract IHatsinCore" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "PERCENT_DIVISOR",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "addColl",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      { name: "account", type: "address", internalType: "address" },
+      { name: "_collateralAmount", type: "uint256", internalType: "uint256" },
+      { name: "_upperHint", type: "address", internalType: "address" },
+      { name: "_lowerHint", type: "address", internalType: "address" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "adjustDen",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      { name: "account", type: "address", internalType: "address" },
+      { name: "_maxFeePercentage", type: "uint256", internalType: "uint256" },
+      { name: "_collDeposit", type: "uint256", internalType: "uint256" },
+      { name: "_collWithdrawal", type: "uint256", internalType: "uint256" },
+      { name: "_debtChange", type: "uint256", internalType: "uint256" },
+      { name: "_isDebtIncrease", type: "bool", internalType: "bool" },
+      { name: "_upperHint", type: "address", internalType: "address" },
+      { name: "_lowerHint", type: "address", internalType: "address" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "checkRecoveryMode",
+    inputs: [{ name: "TCR", type: "uint256", internalType: "uint256" }],
+    outputs: [{ name: "", type: "bool", internalType: "bool" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "closeDen",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      { name: "account", type: "address", internalType: "address" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "configureCollateral",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      {
+        name: "collateralToken",
+        type: "address",
+        internalType: "contract IERC20",
+      },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "debtToken",
+    inputs: [],
+    outputs: [
+      { name: "", type: "address", internalType: "contract IDebtToken" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "denManagers",
+    inputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    outputs: [
+      { name: "", type: "address", internalType: "contract IDenManager" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "denManagersData",
+    inputs: [
+      { name: "", type: "address", internalType: "contract IDenManager" },
+    ],
+    outputs: [
+      {
+        name: "collateralToken",
+        type: "address",
+        internalType: "contract IERC20",
+      },
+      { name: "index", type: "uint16", internalType: "uint16" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "factory",
+    inputs: [],
+    outputs: [{ name: "", type: "address", internalType: "address" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "fetchBalances",
+    inputs: [],
+    outputs: [
+      {
+        name: "balances",
+        type: "tuple",
+        internalType: "struct BorrowerOperations.SystemBalances",
+        components: [
+          { name: "collaterals", type: "uint256[]", internalType: "uint256[]" },
+          { name: "debts", type: "uint256[]", internalType: "uint256[]" },
+          { name: "prices", type: "uint256[]", internalType: "uint256[]" },
+        ],
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getCompositeDebt",
+    inputs: [{ name: "_debt", type: "uint256", internalType: "uint256" }],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getGlobalSystemBalances",
+    inputs: [],
+    outputs: [
+      {
+        name: "totalPricedCollateral",
+        type: "uint256",
+        internalType: "uint256",
+      },
+      { name: "totalDebt", type: "uint256", internalType: "uint256" },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "getTCR",
+    inputs: [],
+    outputs: [
+      {
+        name: "globalTotalCollateralRatio",
+        type: "uint256",
+        internalType: "uint256",
+      },
+    ],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "guardian",
+    inputs: [],
+    outputs: [{ name: "", type: "address", internalType: "address" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "isApprovedDelegate",
+    inputs: [
+      { name: "owner", type: "address", internalType: "address" },
+      { name: "caller", type: "address", internalType: "address" },
+    ],
+    outputs: [{ name: "isApproved", type: "bool", internalType: "bool" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "minNetDebt",
+    inputs: [],
+    outputs: [{ name: "", type: "uint256", internalType: "uint256" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "openDen",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      { name: "account", type: "address", internalType: "address" },
+      { name: "_maxFeePercentage", type: "uint256", internalType: "uint256" },
+      { name: "_collateralAmount", type: "uint256", internalType: "uint256" },
+      { name: "_debtAmount", type: "uint256", internalType: "uint256" },
+      { name: "_upperHint", type: "address", internalType: "address" },
+      { name: "_lowerHint", type: "address", internalType: "address" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "owner",
+    inputs: [],
+    outputs: [{ name: "", type: "address", internalType: "address" }],
+    stateMutability: "view",
+  },
+  {
+    type: "function",
+    name: "removeDenManager",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "repayDebt",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      { name: "account", type: "address", internalType: "address" },
+      { name: "_debtAmount", type: "uint256", internalType: "uint256" },
+      { name: "_upperHint", type: "address", internalType: "address" },
+      { name: "_lowerHint", type: "address", internalType: "address" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "setDelegateApproval",
+    inputs: [
+      { name: "_delegate", type: "address", internalType: "address" },
+      { name: "_isApproved", type: "bool", internalType: "bool" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "setMinNetDebt",
+    inputs: [{ name: "_minNetDebt", type: "uint256", internalType: "uint256" }],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "withdrawColl",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      { name: "account", type: "address", internalType: "address" },
+      { name: "_collWithdrawal", type: "uint256", internalType: "uint256" },
+      { name: "_upperHint", type: "address", internalType: "address" },
+      { name: "_lowerHint", type: "address", internalType: "address" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "function",
+    name: "withdrawDebt",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        internalType: "contract IDenManager",
+      },
+      { name: "account", type: "address", internalType: "address" },
+      { name: "_maxFeePercentage", type: "uint256", internalType: "uint256" },
+      { name: "_debtAmount", type: "uint256", internalType: "uint256" },
+      { name: "_upperHint", type: "address", internalType: "address" },
+      { name: "_lowerHint", type: "address", internalType: "address" },
+    ],
+    outputs: [],
+    stateMutability: "nonpayable",
+  },
+  {
+    type: "event",
+    name: "BorrowingFeePaid",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        indexed: true,
+        internalType: "contract IDenManager",
+      },
+      {
+        name: "borrower",
+        type: "address",
+        indexed: true,
+        internalType: "address",
+      },
+      {
+        name: "amount",
+        type: "uint256",
+        indexed: false,
+        internalType: "uint256",
+      },
+    ],
+    anonymous: false,
+  },
+  {
+    type: "event",
+    name: "CollateralConfigured",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        indexed: false,
+        internalType: "contract IDenManager",
+      },
+      {
+        name: "collateralToken",
+        type: "address",
+        indexed: false,
+        internalType: "contract IERC20",
+      },
+    ],
+    anonymous: false,
+  },
+  {
+    type: "event",
+    name: "DelegateApprovalSet",
+    inputs: [
+      {
+        name: "owner",
+        type: "address",
+        indexed: true,
+        internalType: "address",
+      },
+      {
+        name: "delegate",
+        type: "address",
+        indexed: true,
+        internalType: "address",
+      },
+      {
+        name: "isApproved",
+        type: "bool",
+        indexed: false,
+        internalType: "bool",
+      },
+    ],
+    anonymous: false,
+  },
+  {
+    type: "event",
+    name: "DenCreated",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        indexed: true,
+        internalType: "contract IDenManager",
+      },
+      {
+        name: "_borrower",
+        type: "address",
+        indexed: true,
+        internalType: "address",
+      },
+      {
+        name: "arrayIndex",
+        type: "uint256",
+        indexed: false,
+        internalType: "uint256",
+      },
+    ],
+    anonymous: false,
+  },
+  {
+    type: "event",
+    name: "DenManagerRemoved",
+    inputs: [
+      {
+        name: "denManager",
+        type: "address",
+        indexed: false,
+        internalType: "contract IDenManager",
+      },
+    ],
+    anonymous: false,
+  },
+  {
+    type: "event",
+    name: "DenUpdated",
+    inputs: [
+      {
+        name: "_denManager",
+        type: "address",
+        indexed: true,
+        internalType: "contract IDenManager",
+      },
+      {
+        name: "_borrower",
+        type: "address",
+        indexed: true,
+        internalType: "address",
+      },
+      {
+        name: "_debt",
+        type: "uint256",
+        indexed: false,
+        internalType: "uint256",
+      },
+      {
+        name: "_coll",
+        type: "uint256",
+        indexed: false,
+        internalType: "uint256",
+      },
+      {
+        name: "stake",
+        type: "uint256",
+        indexed: false,
+        internalType: "uint256",
+      },
+      {
+        name: "operation",
+        type: "uint8",
+        indexed: false,
+        internalType: "enum BorrowerOperations.BorrowerOperation",
+      },
+    ],
+    anonymous: false,
+  },
+];
