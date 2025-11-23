@@ -37,12 +37,6 @@ export default function Header() {
           >
             Swap
           </Link>
-          <Link
-            href="/mint"
-            className="text-sm font-medium text-zinc-600 hover:text-black dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
-          >
-            Mint
-          </Link>
         </nav>
         <div className="flex items-center gap-4 relative z-10">
           <ChainSelector />
