@@ -1,9 +1,7 @@
 import { cookieStorage, createStorage, http } from "@wagmi/core";
 import { WagmiAdapter } from "@reown/appkit-adapter-wagmi";
 import {
-  rootstock,
   rootstockTestnet,
-  zircuit,
   zircuitGarfieldTestnet,
 } from "@reown/appkit/networks";
 import { hatsinChainlet } from "./chainlet-config";
@@ -16,10 +14,8 @@ if (!projectId) {
 }
 
 export const networks = [
-  zircuit,
   zircuitGarfieldTestnet,
   hatsinChainlet,
-  rootstock,
   rootstockTestnet,
 ];
 

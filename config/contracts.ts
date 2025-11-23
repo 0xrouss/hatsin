@@ -1,7 +1,5 @@
 import {
-  zircuit,
   zircuitGarfieldTestnet,
-  rootstock,
   rootstockTestnet,
 } from "@reown/appkit/networks";
 import { hatsinChainlet } from "./chainlet-config";
@@ -45,62 +43,42 @@ const NATIVE_TOKEN: Omit<Token, "address"> = {
 
 // Chain configurations
 export const chainConfigs: Record<number, ChainConfig> = {
-  // Zircuit Mainnet
-  [zircuit.id]: {
-    chainId: zircuit.id,
-    tokens: [
-      {
-        address: "0x0000000000000000000000000000000000000000" as `0x${string}`, // Native ETH
-        ...NATIVE_TOKEN,
-      },
-      {
-        address: "0x4200000000000000000000000000000000000006" as `0x${string}`,
-        symbol: "WETH",
-        name: "Wrapped Ether",
-        decimals: 18,
-        coingeckoId: "ethereum",
-      },
-      {
-        address: "0x19df5689Cfce64bC2A55F7220B0Cd522659955EF" as `0x${string}`,
-        symbol: "WBTC",
-        name: "Wrapped Bitcoin",
-        decimals: 8,
-        coingeckoId: "bitcoin",
-      },
-      {
-        address: "0x3b952c8C9C44e8Fe201e2b26F6B2200203214cfF" as `0x${string}`,
-        symbol: "USDC",
-        name: "USD Coin",
-        decimals: 6,
-        coingeckoId: "usd-coin",
-      },
-    ],
-    contracts: {
-      deposit: undefined, // Add contract address when deployed
-      withdraw: undefined,
-      staking: undefined,
-      vault: undefined,
-      bridge: undefined,
-      bridge2: undefined,
-    },
-  },
-
   // Zircuit Testnet
   [zircuitGarfieldTestnet.id]: {
     chainId: zircuitGarfieldTestnet.id,
     tokens: [
       {
-        address: "0x4f8bc040b06b9bf3C3e5a1214c0112A9e3cd18dc" as `0x${string}`,
+        address: "0x1774a4Abd5363E5512697a1719A75a3E0b30373f" as `0x${string}`,
         symbol: "WETH",
         name: "Wrapped Ether",
         decimals: 18,
         coingeckoId: "ethereum",
-        denManager: "0xCf5E2731D33649BACbD8893F84B682E0bCAcD950",
+        denManager: "0xcA386e4ba54C01B9d38c6989C9CAec3DfC614410",
+      },
+      {
+        address: "0x987EF34474C0754883dCfAbB43eb5a3279786C31" as `0x${string}`,
+        symbol: "USDC",
+        name: "USD Coin",
+        decimals: 6,
+        coingeckoId: "usd-coin",
+        denManager:
+          "0x1Df49269049dAab5797cE5178573340efc300D9c" as `0x${string}`,
+      },
+      {
+        address: "0xFec3F6aEC39F70077154d0b012D645EFeF3d6390" as `0x${string}`,
+        symbol: "WBTC",
+        name: "Wrapped Bitcoin",
+        decimals: 18,
+        coingeckoId: "bitcoin",
+        denManager:
+          "0xC00db7E12c87Fc9A814E620EC40b41B3fa405142" as `0x${string}`,
       },
     ],
     contracts: {
       deposit: undefined,
-      borrowerOperations: "0x59f60DFF9523aE063d512d9ca44e0423aDAA6BD9",
+      borrowerOperations: "0x1d0D2Ee02DC807e61983c661102E57f5ab896215",
+      ispSwapRouter: "0xe915735eAF2a36002ad033a1d6fa818b219263D1",
+      liquidStabilityPool: "0xeEB6c89390Fd0b03d11CCA2189a11F3648CE6283",
       withdraw: undefined,
       staking: undefined,
       vault: undefined,
@@ -152,78 +130,43 @@ export const chainConfigs: Record<number, ChainConfig> = {
     },
   },
 
-  // Rootstock Mainnet
-  [rootstock.id]: {
-    chainId: rootstock.id,
-    tokens: [
-      {
-        address: "0x0000000000000000000000000000000000000000" as `0x${string}`, // Native RBTC
-        symbol: "RBTC",
-        name: "Rootstock Bitcoin",
-        decimals: 18,
-        coingeckoId: "bitcoin",
-      },
-      {
-        address: "0x3a15461d8ae0f0fb5fa2629e9da7d66a794a6e37" as `0x${string}`,
-        symbol: "USDRIF",
-        name: "RIF US Dollar",
-        decimals: 18,
-        coingeckoId: "rif-us-dollar",
-      },
-      // Add Rootstock tokens
-      // {
-      //   address: "0x..." as `0x${string}`,
-      //   symbol: "USDT",
-      //   name: "Tether USD",
-      //   decimals: 6,
-      // },
-    ],
-    contracts: {
-      deposit: undefined,
-      withdraw: undefined,
-      staking: undefined,
-      vault: undefined,
-      bridge: undefined,
-    },
-  },
-
   // Rootstock Testnet
   [rootstockTestnet.id]: {
     chainId: rootstockTestnet.id,
     tokens: [
       {
-        address: "0x0000000000000000000000000000000000000000" as `0x${string}`,
+        address: "0x7cF6d00DaA95134FF95cE5F47d5EB9069a514cA9" as `0x${string}`,
         symbol: "tRBTC",
         name: "Test Rootstock Bitcoin",
         decimals: 18,
         coingeckoId: "bitcoin",
+        denManager:
+          "0xE95b98cDBd20fF4aFcC92093220E096e474E0ce8" as `0x${string}`,
       },
       {
-        address: "0x8dbf326e12a9ff37ed6ddf75ada548c2640a6482" as `0x${string}`,
+        address: "0x4342477a40F1B503A36DA395Eb88B9B3a3ab53D6" as `0x${string}`,
         symbol: "USDRIF",
         name: "RIF US Dollar",
         decimals: 18,
         coingeckoId: "rif-us-dollar",
+        denManager:
+          "0xEC60a49891027C13Ba44B3234dB9508437F0bD6a" as `0x${string}`,
       },
       {
-        address: "0x8dbf326e12a9ff37ed6ddf75ada548c2640a6483" as `0x${string}`,
+        address: "0xc3656c19265827FB71824DE03409e4B750fa925d" as `0x${string}`,
         symbol: "WETH",
         name: "Wrapped Ether",
         decimals: 18,
         coingeckoId: "ethereum",
+        denManager:
+          "0x52d98E0d520f3aE8863fe2BdAEB6f8Cd1b5771eE" as `0x${string}`,
       },
-      {
-        address: "0x8dbf326e12a9ff37ed6ddf75ada548c2640a6484" as `0x${string}`,
-        symbol: "USDC",
-        name: "USD Coin",
-        decimals: 6,
-        coingeckoId: "usd-coin",
-      },
-      //0x8dbf326e12a9ff37ed6ddf75ada548c2640a6482,
-      // Add testnet tokens
     ],
     contracts: {
       deposit: undefined,
+      borrowerOperations: "0x9841405F2C41Bb1d839bE9Ce67998FA80aa88052",
+      ispSwapRouter: "0xc419c43303CC27D4D07E0993C44469494D75284e",
+      liquidStabilityPool: "0xf34ec5de7f4B7D2D47D8463030592Df68A2Fd2Ec",
       withdraw: undefined,
       staking: undefined,
       vault: undefined,
@@ -257,4 +200,21 @@ export function getTokenByAddress(
 
 export function isNativeToken(address: `0x${string}`): boolean {
   return address === "0x0000000000000000000000000000000000000000";
+}
+
+/**
+ * Get the USDC-equivalent token for a chain.
+ * On Rootstock testnet, returns USDRIF. On other chains, returns USDC.
+ * Returns null if neither token is available.
+ */
+export function getUsdcEquivalentToken(chainId: number): Token | null {
+  const tokens = getTokensForChain(chainId);
+
+  // On Rootstock testnet, return USDRIF
+  if (chainId === rootstockTestnet.id) {
+    return tokens.find((token) => token.symbol === "USDRIF") || null;
+  }
+
+  // On other chains, return USDC
+  return tokens.find((token) => token.symbol === "USDC") || null;
 }

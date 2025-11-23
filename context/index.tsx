@@ -4,9 +4,7 @@ import { wagmiAdapter, projectId } from "@/config";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createAppKit } from "@reown/appkit/react";
 import {
-  rootstock,
   rootstockTestnet,
-  zircuit,
   zircuitGarfieldTestnet,
 } from "@reown/appkit/networks";
 import React, { type ReactNode } from "react";
@@ -32,14 +30,8 @@ const metadata = {
 const modal = createAppKit({
   adapters: [wagmiAdapter],
   projectId,
-  networks: [
-    zircuit,
-    zircuitGarfieldTestnet,
-    hatsinChainlet,
-    rootstock,
-    rootstockTestnet,
-  ],
-  defaultNetwork: zircuit,
+  networks: [zircuitGarfieldTestnet, hatsinChainlet, rootstockTestnet],
+  defaultNetwork: zircuitGarfieldTestnet,
   metadata: metadata,
   features: {
     analytics: true, // Optional - defaults to your Cloud configuration
