@@ -35,7 +35,8 @@ export default function Deposit() {
   // Get contract addresses
   const contracts = getContractsForChain(chainId);
   const borrowerOperationsAddress = contracts.borrowerOperations;
-  const denManagerAddress = contracts.denManager;
+  // denManager is now per-token, not per-chain
+  const denManagerAddress = selectedToken?.denManager;
 
   // Write contract hook
   const {

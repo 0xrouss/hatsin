@@ -14,11 +14,11 @@ export type Token = {
   decimals: number;
   logoURI?: string;
   coingeckoId?: string; // CoinGecko ID for price fetching (e.g., "ethereum", "bitcoin")
+  denManager?: `0x${string}`;
 };
 
 export type ProtocolContracts = {
   deposit?: `0x${string}`;
-  denManager?: `0x${string}`;
   borrowerOperations?: `0x${string}`;
   withdraw?: `0x${string}`;
   staking?: `0x${string}`;
@@ -88,17 +88,17 @@ export const chainConfigs: Record<number, ChainConfig> = {
     chainId: zircuitGarfieldTestnet.id,
     tokens: [
       {
-        address: "0xeB1eF3Eff5c19EDb930D1aE9f013257fA76ef3d5" as `0x${string}`,
+        address: "0x4f8bc040b06b9bf3C3e5a1214c0112A9e3cd18dc" as `0x${string}`,
         symbol: "WETH",
         name: "Wrapped Ether",
         decimals: 18,
         coingeckoId: "ethereum",
+        denManager: "0xCf5E2731D33649BACbD8893F84B682E0bCAcD950",
       },
     ],
     contracts: {
       deposit: undefined,
-      denManager: "0xfFb470E3daDCa347aCE34a19789a7f1588628Bd2",
-      borrowerOperations: "0x39Cab8A36431293D477bCA7A457377446f3edd98",
+      borrowerOperations: "0x59f60DFF9523aE063d512d9ca44e0423aDAA6BD9",
       withdraw: undefined,
       staking: undefined,
       vault: undefined,
